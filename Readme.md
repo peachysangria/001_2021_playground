@@ -21,4 +21,5 @@
 # Ссылки
 https://swift.org/documentation/ - документация Swift
 https://www.youtube.com/watch?v=UVlKhAiLpPw - как делать домашние задания
+https://github.com/raywenderlich/swift-style-guide - гайд по стилю написания кода (есть разные стили, вот этот чаще всего принят в командах разработки)
 
