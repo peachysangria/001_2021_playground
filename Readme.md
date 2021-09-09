@@ -19,4 +19,6 @@
 
 
 # Ссылки
-https://swift.org/documentation/
+https://swift.org/documentation/ - документация Swift
+https://www.youtube.com/watch?v=UVlKhAiLpPw - как делать домашние задания
+
