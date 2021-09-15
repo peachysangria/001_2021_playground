@@ -8,7 +8,7 @@ class Flower {
         self.petals = petals;
     }
     
-    public func growth() -> Void {
+    public func growth() {
         size += petals
         print(size)
     }

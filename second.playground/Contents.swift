@@ -7,16 +7,16 @@ struct Drob {
         self.denominator = denominator
     }
     
-    func show(){
+    func show() {
         print("\(numerator)/\(denominator)")
     }
     
     
-    func NOD() -> Drob{
+    func NOD() -> Drob {
         var a: Int = numerator
         var b: Int = denominator
         if a > 0 && b > 0 {
-            while (a != b){
+            while (a != b) {
                 if a > b {
                     a = a - b
                 }else {
