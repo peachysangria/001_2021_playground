@@ -2,12 +2,11 @@ import UIKit
 
 var str = "Hello, playground"
 protocol Student {
-    var fractionName: String { get set }
+    var name: String { get }
     var health: Int { get set }
     var strength: Int { get set }
-    var motto: String { get set }
     
-    func summary ()
+    func summary()
     func getDamage (student: Student)
     func giveDamage (student: Student)
 }
@@ -20,26 +19,24 @@ protocol Arena {
 }
 
 class Player: Student {
-    var fractionName: String
+    var name: String
     var health: Int
     var strength: Int
-    var motto: String
 
-    init(fractionName: String, health: Int, strength: Int) {
-        self.fractionName = fractionName
+    init(name: String, health: Int, strength: Int) {
+        self.name = name
         self.health = health
         self.strength = strength
-        self.motto = ""
     }
     
     func getDamage(student: Student) {
         if self.health > student.strength {
-            print(self.fractionName," was ataccked by ",student.fractionName," and lost ",self.health - student.strength," HP")
+            print(self.name," was ataccked by ",student.name," and lost ",self.health - student.strength," HP")
             print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             self.health -= student.strength
         }
         else {
-            print(self.fractionName," is dead now!!!!!!!!!! FATALITY")
+            print(self.name," is dead now!!!!!!!!!! FATALITY")
             print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             self.health = 0
         }
@@ -47,29 +44,20 @@ class Player: Student {
     
     func giveDamage(student: Student) {
         if student.health > self.strength{
-            print(self.fractionName," started fighting with ",student.fractionName," and hit with the ",self.strength," strength")
+            print(self.name," started fighting with ",student.name," and hit with the ",self.strength," strength")
             print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
         }
         else{
-            print(self.fractionName," defeated ",student.fractionName," MDAMAYZING !!!!!!!!")
+            print(self.name," defeated ",student.name," MDAMAYZING !!!!!!!!")
             print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
         }
     }
     
     func summary() {
-        let seconds = 1.0
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-            print ("STUDENT NAME:",self.fractionName)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds * 2) {
-            print ("HEALTH:",self.health)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds * 3) {
-            print ("STRENGTH:",self.strength)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds * 4) {
-            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-        }
+        print ("STUDENT NAME:",self.name)
+        print ("HEALTH:",self.health)
+        print ("STRENGTH:",self.strength)
+        print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
     }
 }
 
@@ -98,10 +86,9 @@ class Team {
     func deadStudentsTrash() {
         var infinites: [Student] = []
         var count = 0
-        for student in infinites
-        {
+        for student in infinites {
             if student.health == 0 {
-                print(student.fractionName,"left our peaceful party. What a pity!")
+                print(student.name,"left our peaceful party. What a pity!")
                 print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
                 infinites.remove(at: count)
                 count += 1
@@ -123,7 +110,6 @@ class GhettoGarden: Arena {
     
     func startBattle() {
         var game = 1
-        let seconds = 1.5
         
         print("Hello! Wanna go dancin'? Time for a f(l)ightshow")
         print("Community's favourite game iS BACK!")
@@ -149,13 +135,8 @@ class GhettoGarden: Arena {
                 secondTeam[0].givenDamage += prevHealth - curHealth
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
-                print("Good job, snickers! Your Game",game," is over.")
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + seconds * 2) {
-                print("Change panties and wait for results...")
-            }
+            print("Good job, snickers! Your Game",game," is over.")
+            print("Change panties and wait for results...")
             game += 1
             firstTeam[0].summary()
             secondTeam[0].summary()
@@ -191,22 +172,10 @@ class GhettoGarden: Arena {
     }
 }
 
-var players1: [Player] = []
-players1.append(Player(fractionName: "Peter", health: 100, strength: 10))
-players1.append(Player(fractionName: "John", health: 100, strength: 10))
-players1.append(Player(fractionName: "Mike", health: 100, strength: 4))
-players1.append(Player(fractionName: "Andrew", health: 300, strength: 2))
-players1.append(Player(fractionName: "Oleg", health: 100, strength: 10))
+var firstTeamPlayers: [Player] = [(Player(name: "Abooba", health: 2, strength: 0))]
+var secondTeamPlayers: [Player] = [(Player(name: "Pisaka", health: 25, strength: 5))]
 
-var players2: [Player] = []
-players2.append(Player(fractionName: "Tim", health: 100, strength: 10))
-players2.append(Player(fractionName: "Tom", health: 100, strength: 10))
-players2.append(Player(fractionName: "Derp", health: 100, strength: 8))
-players2.append(Player(fractionName: "Will", health: 100, strength: 5))
-players2.append(Player(fractionName: "Leila", health: 100, strength: 9))
+var team1 = Team(students: firstTeamPlayers, fractionName: "Speakers", motto: "go go speak speak!", givenDamage: 0)
+var team2 = Team(students: secondTeamPlayers, fractionName: "Bikers", motto: "bikes bikes for a rise!", givenDamage: 0)
 
-
-var team1 = Team(students: players1, fractionName: "Speakers", motto: "go go speak speak!", givenDamage: 0)
-var team2 = Team(students: players2, fractionName: "Bikers", motto: "bikes bikes for a rise!", givenDamage: 0)
-
-GhettoGarden(firstTeam: team2, secondTeam: team1).startBattle()
+GhettoGarden(firstTeam: team1, secondTeam: team2)

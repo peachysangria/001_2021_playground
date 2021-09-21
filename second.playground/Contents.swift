@@ -23,7 +23,7 @@ struct Drob {
                     b = b - a
                 }
             }
-        }else {
+        } else {
             a *= -1
             while a != b {
                 if a > b {
