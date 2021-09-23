@@ -7,8 +7,8 @@ protocol Student {
     var strength: Int { get set }
     
     func summary()
-    func getDamage (student: Student)
-    func giveDamage (student: Student)
+    func getDamage(student: Student)
+    func giveDamage(student: Student)
 }
 
 protocol Arena {
@@ -54,9 +54,9 @@ class Player: Student {
     }
     
     func summary() {
-        print ("STUDENT NAME:",self.name)
-        print ("HEALTH:",self.health)
-        print ("STRENGTH:",self.strength)
+        print("STUDENT NAME:",self.name)
+        print("HEALTH:",self.health)
+        print("STRENGTH:",self.strength)
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
     }
 }
@@ -74,13 +74,13 @@ class Team {
         self.givenDamage = givenDamage
     }
     
-    func summary(){
+    func summary() {
         print(self.students.count," fighters left. Is it enough to continue battle?")
         print(self.givenDamage," damage given by the Team")
         for student in self.students{
             student.summary()
         }
-        print ("END OF SUMMARY")
+        print("END OF SUMMARY")
     }
     
     func deadStudentsTrash() {
